@@ -1,3 +1,11 @@
+window.addEventListener('storage', (event) => {
+    if (event.key === 'messages') {
+        chat.innerHTML = '';
+        const updatedMessages = JSON.parse(event.newValue) || [];
+        updatedMessages.forEach(renderMessage);
+    }
+});
+
 const chat = document.getElementById('chat');
 const usernameInput = document.getElementById('username');
 const messageInput = document.getElementById('message');
