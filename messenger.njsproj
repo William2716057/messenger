@@ -31,6 +31,15 @@
     <Content Include="index.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="login.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="login.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="login.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="script.js">
       <SubType>Code</SubType>
     </Content>
