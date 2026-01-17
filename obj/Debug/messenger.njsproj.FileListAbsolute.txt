@@ -1,0 +1,3 @@
+C:\Users\wills\Desktop\Shortcuts\Files\Github\messenger\messenger\obj\Debug\messenger.njsproj.AssemblyReference.cache
+C:\Users\wills\Desktop\Shortcuts\Files\Github\messenger\messenger\obj\Debug\messenger.njsproj.CoreCompileInputs.cache
+C:\Users\wills\Desktop\Shortcuts\Files\Github\messenger\messenger\bin\Microsoft.NodejsTools.WebRole.dll
