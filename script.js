@@ -4,45 +4,52 @@ const messageInput = document.getElementById('message');
 const sendButton = document.getElementById('send');
 
 
-// Load saved messages
-const messages = JSON.parse(localStorage.getItem('messages')) || [];
-messages.forEach(addMessageToChat);
+let messages = JSON.parse(localStorage.getItem('messages')) || [];
+messages.forEach(renderMessage);
 
 
 sendButton.addEventListener('click', sendMessage);
-messageInput.addEventListener('keypress', (e) => {
+messageInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') sendMessage();
 });
 
 
 function sendMessage() {
-    const username = usernameInput.value.trim() || 'Anonymous';
+    const user = usernameInput.value.trim() || 'Me';
     const text = messageInput.value.trim();
-
-
     if (!text) return;
 
 
-    const message = {
-        user: username,
-        text: text,
-        time: new Date().toLocaleTimeString()
-    };
-
-
-    messages.push(message);
+    const msg = { user, text, time: new Date().toLocaleTimeString() };
+    messages.push(msg);
     localStorage.setItem('messages', JSON.stringify(messages));
-
-
-    addMessageToChat(message);
+    renderMessage(msg);
     messageInput.value = '';
 }
 
 
-function addMessageToChat(message) {
-    const div = document.createElement('div');
-    div.className = 'message';
-    div.innerHTML = `<strong>${message.user}</strong> [${message.time}]: ${message.text}`;
-    chat.appendChild(div);
+function renderMessage(msg) {
+    const isMine = msg.user === (usernameInput.value || 'Me');
+
+
+    const wrapper = document.createElement('div');
+    const meta = document.createElement('div');
+    const bubble = document.createElement('div');
+
+
+    meta.className = 'meta';
+    meta.textContent = `${msg.user} • ${msg.time}`;
+
+
+    bubble.className = `bubble ${isMine ? 'mine' : 'theirs'}`;
+    bubble.textContent = msg.text;
+
+
+    wrapper.appendChild(meta);
+    wrapper.appendChild(bubble);
+    wrapper.style.alignSelf = isMine ? 'flex-end' : 'flex-start';
+
+
+    chat.appendChild(wrapper);
     chat.scrollTop = chat.scrollHeight;
 }
